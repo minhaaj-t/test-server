@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 # Initialize Flask app
-app = Flask(__name__, static_folder='frontend', static_url_path='')
+app = Flask(__name__)
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = (
@@ -177,25 +177,13 @@ def insert_dummy_data():
         else:
             print("Product data already exists, skipping insertion.")
 
-# Serve the frontend
+# Define a simple route
 @app.route('/')
 def index():
-    return send_from_directory('frontend', 'index.html')
-
-# Serve static files (CSS, JS, images, etc.)
-@app.route('/<path:filename>')
-def static_files(filename):
-    # Check if the requested file exists in the frontend directory
-    frontend_path = os.path.join('frontend', filename)
-    if os.path.exists(frontend_path) and not filename.startswith('api/'):
-        return send_from_directory('frontend', filename)
-    
-    # If it's an API route or the file doesn't exist, let Flask handle it with other routes
-    # This prevents conflicts between static file serving and API routes
-    return index()  # Fallback to index.html for client-side routing
+    return '<h1>Library Management System</h1><p>Flask server connected to MySQL database</p><p><a href="/books">View Books</a> | <a href="/products">View Products</a></p>'
 
 # API endpoint to get all books
-@app.route('/api/books')
+@app.route('/books')
 def get_books():
     books = Book.query.all()
     books_list = []
@@ -212,7 +200,7 @@ def get_books():
     return {'books': books_list}
 
 # API endpoint to get all products
-@app.route('/api/products')
+@app.route('/products')
 def get_products():
     products = Product.query.all()
     products_list = []

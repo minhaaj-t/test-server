@@ -1,6 +1,6 @@
 # Flask MySQL Server
 
-A Python Flask application that connects to a MySQL database and provides API endpoints for a library management system with a frontend interface.
+A Python Flask application that connects to a MySQL database and provides API endpoints for a library management system.
 
 ## Setup
 
@@ -31,18 +31,11 @@ The server will be available at `http://localhost:5000`
 
 See [RENDER.md](RENDER.md) for detailed instructions on deploying to Render.com.
 
-## Accessing the Application
-
-Once deployed, you can access the application at:
-- Main frontend: `https://your-render-url.onrender.com/`
-- Books API: `https://your-render-url.onrender.com/api/books`
-- Products API: `https://your-render-url.onrender.com/api/products`
-
 ## API Endpoints
 
-- `GET /` - Frontend interface
-- `GET /api/books` - Retrieve all books in the library
-- `GET /api/products` - Retrieve all products
+- `GET /` - Home page
+- `GET /books` - Retrieve all books in the library
+- `GET /products` - Retrieve all products
 
 ## Database Schema
 
@@ -58,7 +51,6 @@ The application works with the existing database schema and adds:
 - Inserts dummy data if tables are empty
 - Handles existing database constraints properly
 - Creates new tables as needed
-- Provides a responsive web frontend
 
 ## Dummy Data
 
