@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 # Initialize Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend')
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = (
@@ -177,13 +177,17 @@ def insert_dummy_data():
         else:
             print("Product data already exists, skipping insertion.")
 
-# Define a simple route
+# Serve the frontend
 @app.route('/')
 def index():
-    return '<h1>Library Management System</h1><p>Flask server connected to MySQL database</p><p><a href="/books">View Books</a> | <a href="/products">View Products</a></p>'
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
 
 # API endpoint to get all books
-@app.route('/books')
+@app.route('/api/books')
 def get_books():
     books = Book.query.all()
     books_list = []
@@ -200,7 +204,7 @@ def get_books():
     return {'books': books_list}
 
 # API endpoint to get all products
-@app.route('/products')
+@app.route('/api/products')
 def get_products():
     products = Product.query.all()
     products_list = []

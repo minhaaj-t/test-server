@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library & Product Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1>Library & Product Management</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#books" class="active">Books</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to Our Library & Product Management System</h1>
+                <p>Explore our collection of books and products through our API-powered interface</p>
+            </div>
+        </section>
+
+        <section id="books" class="content-section">
+            <div class="container">
+                <h2><i class="fas fa-book"></i> Library Books</h2>
+                <div class="loading" id="books-loading">
+                    <p>Loading books...</p>
+                </div>
+                <div class="error" id="books-error" style="display: none;">
+                    <p>Error loading books. Please try again later.</p>
+                </div>
+                <div class="cards-container" id="books-container">
+                    <!-- Books will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="content-section">
+            <div class="container">
+                <h2><i class="fas fa-shopping-cart"></i> Products</h2>
+                <div class="loading" id="products-loading">
+                    <p>Loading products...</p>
+                </div>
+                <div class="error" id="products-error" style="display: none;">
+                    <p>Error loading products. Please try again later.</p>
+                </div>
+                <div class="cards-container" id="products-container">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="content-section">
+            <div class="container">
+                <h2>About This System</h2>
+                <div class="about-content">
+                    <p>This is a Flask-based web application that connects to a MySQL database to manage library books and products. The frontend communicates with backend APIs to display real-time data.</p>
+                    <div class="api-info">
+                        <h3>API Endpoints:</h3>
+                        <ul>
+                            <li><strong>Books API:</strong> <a href="https://test-server-z1ar.onrender.com/books" target="_blank">https://test-server-z1ar.onrender.com/books</a></li>
+                            <li><strong>Products API:</strong> <a href="https://test-server-z1ar.onrender.com/products" target="_blank">https://test-server-z1ar.onrender.com/products</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Library & Product Management System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
