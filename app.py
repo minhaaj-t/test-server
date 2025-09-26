@@ -182,10 +182,17 @@ def insert_dummy_data():
 def index():
     return send_from_directory('frontend', 'index.html')
 
-# Serve static files
-@app.route('/<path:path>')
-def static_files(path):
-    return send_from_directory('frontend', path)
+# Serve static files (CSS, JS, images, etc.)
+@app.route('/<path:filename>')
+def static_files(filename):
+    # Check if the requested file exists in the frontend directory
+    frontend_path = os.path.join('frontend', filename)
+    if os.path.exists(frontend_path) and not filename.startswith('api/'):
+        return send_from_directory('frontend', filename)
+    
+    # If it's an API route or the file doesn't exist, let Flask handle it with other routes
+    # This prevents conflicts between static file serving and API routes
+    return index()  # Fallback to index.html for client-side routing
 
 # API endpoint to get all books
 @app.route('/api/books')

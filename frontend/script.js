@@ -36,6 +36,7 @@ function showSection(section) {
 // Function to load books from the API
 async function loadBooks() {
     try {
+        // Use absolute path for API endpoint
         const response = await fetch('/api/books');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -78,6 +79,7 @@ function displayBooks(books) {
 // Function to load products from the API
 async function loadProducts() {
     try {
+        // Use absolute path for API endpoint
         const response = await fetch('/api/products');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
