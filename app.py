@@ -180,7 +180,7 @@ def insert_dummy_data():
 # Define a simple route
 @app.route('/')
 def index():
-    return '<h1>Library Management System</h1><p>Flask server connected to MySQL database</p>'
+    return '<h1>Library Management System</h1><p>Flask server connected to MySQL database</p><p><a href="/books">View Books</a> | <a href="/products">View Products</a></p>'
 
 # API endpoint to get all books
 @app.route('/books')
@@ -218,4 +218,6 @@ def get_products():
 
 if __name__ == '__main__':
     insert_dummy_data()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Use the PORT environment variable provided by Render, default to 5000 for local development
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
