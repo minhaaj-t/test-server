@@ -42,7 +42,9 @@ The application is configured to:
 - Use the `PORT` environment variable provided by Render
 - Connect to your MySQL database using the environment variables
 - Create tables and insert dummy data on first run
-- Serve the API endpoints at `/books` and `/products`
+- Serve both the frontend interface and API endpoints from the same application
+- Serve the frontend at the root path (`/`)
+- Serve API endpoints under `/api` (e.g., `/api/books`, `/api/products`)
 
 ## Environment Variables
 
