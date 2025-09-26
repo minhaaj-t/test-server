@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 # Initialize Flask app
-app = Flask(__name__, static_folder='frontend')
+app = Flask(__name__, static_folder='frontend', static_url_path='')
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = (
@@ -182,9 +182,19 @@ def insert_dummy_data():
 def index():
     return send_from_directory(app.static_folder, 'index.html')
 
+# Serve static files
 @app.route('/<path:path>')
 def serve_static(path):
-    return send_from_directory(app.static_folder, path)
+    # Check if the file exists in the static folder
+    if os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        # If the file doesn't exist, return the index.html for SPA routing
+        if '.' not in path:  # If it's not a file with extension, treat as route
+            return send_from_directory(app.static_folder, 'index.html')
+        else:
+            # For files with extensions, return 404 if not found
+            return "File not found", 404
 
 # API endpoint to get all books
 @app.route('/api/books')
