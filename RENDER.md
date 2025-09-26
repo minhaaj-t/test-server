@@ -76,6 +76,11 @@ If your deployment fails:
 3. Verify that your database connection details are correct
 4. Make sure your requirements.txt includes all necessary packages
 
+If you're getting a "Not Found" error:
+1. Make sure your Flask app is configured to serve static files correctly
+2. Verify that the frontend files are in the correct directory
+3. Check that the routing is set up properly to serve both the frontend and API endpoints
+
 ## Scaling
 
 Render automatically handles scaling for you. For more advanced scaling options, you can configure:
