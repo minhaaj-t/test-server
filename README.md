@@ -1,6 +1,6 @@
 # Flask MySQL Server
 
-A Python Flask application that connects to a MySQL database and provides API endpoints for a library management system.
+A Python Flask application that connects to a MySQL database and provides API endpoints for a library management system with a frontend interface.
 
 ## Setup
 
@@ -33,9 +33,19 @@ See [RENDER.md](RENDER.md) for detailed instructions on deploying to Render.com.
 
 ## API Endpoints
 
-- `GET /` - Home page
-- `GET /books` - Retrieve all books in the library
-- `GET /products` - Retrieve all products
+- `GET /` - Home page (frontend interface)
+- `GET /api/books` - Retrieve all books in the library
+- `GET /api/products` - Retrieve all products
+
+## Frontend Interface
+
+The application includes a responsive frontend interface built with HTML, CSS, and JavaScript that consumes the API endpoints. The frontend features:
+
+- A modern design using Qatar flag colors (maroon #8D1B3D and white)
+- Responsive layout that works on mobile and desktop
+- Real-time data fetching from the API
+- Beautiful card-based display for books and products
+- Smooth navigation and animations
 
 ## Database Schema
 
@@ -51,6 +61,7 @@ The application works with the existing database schema and adds:
 - Inserts dummy data if tables are empty
 - Handles existing database constraints properly
 - Creates new tables as needed
+- Serves both API and frontend from the same application
 
 ## Dummy Data
 
