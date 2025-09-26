@@ -20,7 +20,7 @@ This document explains how to deploy the Flask application to Render.com.
    - Root Directory: Leave empty
    - Environment: `Python 3`
    - Build Command: `pip install -r requirements.txt`
-   - Start Command: `python app.py`
+   - Start Command: `gunicorn app:app` (We'll use Gunicorn for production)
 6. Add the following environment variables (using the values from your .env file):
    - `DB_HOST`: db.fr-pari1.bengt.wasmernet.com
    - `DB_PORT`: 10272
@@ -42,7 +42,8 @@ The application is configured to:
 - Use the `PORT` environment variable provided by Render
 - Connect to your MySQL database using the environment variables
 - Create tables and insert dummy data on first run
-- Serve the API endpoints at `/books` and `/products`
+- Serve the frontend at the root URL (`/`)
+- Serve the API endpoints at `/api/books` and `/api/products`
 
 ## Environment Variables
 
@@ -82,3 +83,17 @@ Render automatically handles scaling for you. For more advanced scaling options,
 - Auto-scaling rules
 
 In the Render dashboard, go to your service settings to configure these options.
+
+## Production Deployment
+
+For production deployment, we recommend using Gunicorn as the WSGI server instead of the Flask development server. We've updated the Procfile to use Gunicorn.
+
+If you don't have Gunicorn in your requirements.txt, add it:
+```
+Flask==2.3.2
+PyMySQL==1.0.2
+SQLAlchemy==1.4.46
+Flask-SQLAlchemy==2.5.1
+python-dotenv==1.0.0
+gunicorn==20.1.0
+```
